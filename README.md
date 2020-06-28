@@ -4,6 +4,21 @@ Intent recognizer is a project aimed at deriving intent from natural language. I
 where the human operating the machine can choose the next action the machine should perform based on natural language commands.
 It can be used inside the car - for navigation, entertainment or obtaining information from the internet, for smart home appliances and so on.
 
+## Development View
+
+To build the app, please run
+```bash
+mkdir build && cd build
+cmake ..
+make
+
+# to run the tests
+./src/lib/intent_recognizer_test
+
+# to run the app
+./src/bin/app
+```
+
 ## Logical View
 
 The intent recognizer is built around a static library with the same name.
