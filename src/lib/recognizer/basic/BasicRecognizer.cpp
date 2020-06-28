@@ -2,6 +2,7 @@
 
 BasicRecognizer::BasicRecognizer()
     : m_intentMap{
+        // TODO: these should be configurable
           {std::regex(R"(What('s| is) the weather like( today| tomorrow| in (two|three) days)?\?)"), Intent::GET_WEATHER},
           {std::regex(R"(What('s| is) the weather like in (Paris|New York|Berlin)( today| tomorrow| in (two|three) days)?\?)"), Intent::GET_WEATHER_CITY},
           {std::regex(R"((What('s| is) my schedule|Am I free)( at .*)?( today| tomorrow| in (two|three) days)?\?)"), Intent::CHECK_CALENDAR},

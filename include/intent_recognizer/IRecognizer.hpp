@@ -5,11 +5,13 @@
 
 enum class Intent;
 
+// IRecognizer is the interface for intent recognizer implementations.
 class IRecognizer {
 public:
     virtual const Intent getIntent(const std::string& sentence) const = 0;
 };
 
+// Intent is the enum for supported intents.
 enum class Intent {
     UNKNOWN = 0,
     GET_WEATHER = 1,
@@ -18,6 +20,7 @@ enum class Intent {
     GET_FACT = 4,
 };
 
+// Operator overload for feeding an Intent value to a stream.
 inline std::ostream& operator<<(std::ostream& s, const Intent& i) {
     switch (i) {
         case Intent::UNKNOWN:
