@@ -13,3 +13,7 @@ PUBLIC
 PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+add_executable(${PROJECT_NAME}_test test/main.cpp)
+
+target_link_libraries(${PROJECT_NAME}_test ${PROJECT_NAME})
