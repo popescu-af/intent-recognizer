@@ -2,7 +2,7 @@
 
 #include <intent_recognizer/IRecognizer.hpp>
 
-#include <map>
+#include <vector>
 
 class BasicRecognizer : public IRecognizer {
 public:
@@ -11,5 +11,5 @@ public:
     const Intent getIntent(const std::string& sentence) const override;
 
 private:
-    std::map<std::string, Intent> m_intentMap;
+    std::vector<std::pair<std::string, Intent>> m_intentMap;
 };

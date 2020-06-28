@@ -11,6 +11,7 @@ public:
 };
 
 enum class Intent {
+    UNKNOWN = 0,
     GET_WEATHER = 1,
     GET_WEATHER_CITY = 2,
     CHECK_CALENDAR = 3,
@@ -19,6 +20,8 @@ enum class Intent {
 
 inline std::ostream& operator<<(std::ostream& s, const Intent& i) {
     switch (i) {
+        case Intent::UNKNOWN:
+            return s << "Unknown";
         case Intent::GET_WEATHER:
             return s << "Get Weather";
         case Intent::GET_WEATHER_CITY:
