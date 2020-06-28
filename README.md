@@ -18,22 +18,30 @@ Many things can be considered when writing a library that deals with noisy or ra
 Among others, we could name a few
 
 * multiple languages
-* the spelling, which can be wrong. To tackle this, input could be first filtered/matched to common words.
+* the spelling, which can be wrong
 
-To limit the scope of this app, for the moment we support English language only.
-
-Spelling checking however, will be implemented at least in some simple form. Sentences will be checked and curated before being fed to the recognizer.
-
-The architecture of the intent-recognizer lib is as follows
-
-![Library architecture](doc/images/lib.png)
-
-For the sake of simplicity, all versions of the library will support a limited set of intents, e.g.
+For the moment it supports English language only and no spelling fixing. 
+Also for the sake of simplicity, all versions of the library will support a limited set of intents, e.g.
 
 * Get Weather
 * Get Weather City
 * Check Calendar
 * Get Fact
 
-The first version of the intent recognizer is a very basic one. The "guessing" of intent is based
-on the appearence of certain words in the sentences.
+The architecture of the intent-recognizer lib is as follows
+
+![Library architecture](doc/images/lib.png)
+
+As you can see in the picture above, the user of the library can instantiate different types of recognizers, without being coupled to those respective implementations, by means of a common interface.
+
+
+
+#### The `basic` version
+
+The basic version of the intent recognizer is a very simple one. The "guessing" of intent is based
+on simple regular expressions fit for the four recognizable intents.
+This version is assuming the input is strictly matching the expected patterns (which are case insensitive), so it doesn't allow for much flexibility.
+
+#### The `advanced` version
+
+TODO
