@@ -16,7 +16,24 @@ make
 ./src/lib/intent_recognizer_test
 
 # to run the app
-./src/bin/app
+./src/bin/app -h
+# Allowed options:
+#   -h, --help               show help message
+#   -s, --sentence arg       user sentence to guess intent for
+#   -t, --type arg (=basic)  type of recognizer to use, can be 'basic'
+
+# example calls
+./src/bin/app -s "What is the weather like today?"
+Intent: Get Weather
+
+./src/bin/app -s "What is the weather like in Paris today?"
+Intent: Get Weather City
+
+./src/bin/app -s "What's my schedule at 16:00 PM tomorrow?"
+Intent: Check Calendar
+
+./src/bin/app -s "Please elaborate an interesting fact."
+Intent: Get Fact
 ```
 
 ## Logical View
