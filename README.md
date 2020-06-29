@@ -52,7 +52,7 @@ For the purpose of actually using the product, this repository includes a proof 
 ### The `intent-recognizer` lib
 
 Many things can be considered when writing a library that deals with noisy or rather uncertain input.
-Among others, we could name a few
+For the current task, we could name a few
 
 * multiple languages
 * the spelling, which can be wrong
@@ -75,7 +75,7 @@ As you can see in the picture above, the user of the library can instantiate dif
 
 The basic version of the intent recognizer is a very simple one. The "guessing" of intent is based
 on simple regular expressions fit for the four recognizable intents.
-This version is assuming the input is strictly matching the expected patterns (which are case insensitive), so it doesn't allow for much flexibility.
+This version is assuming the input is strictly matching the expected patterns (which are case sensitive), so it doesn't allow for much flexibility.
 
 #### The `advanced` version
 
@@ -89,8 +89,8 @@ predefined keywords in the given sentence to create the feature vector.
 
 Note: although it would be expected that the advanced recognizer would handle natural language better,
 given the present training data and feature vector definitions, the results are over fit to the (small)
-training set. That's why the results are not satisfactory. By spending a few hours on increasing the
-training set and including more keywords in the bag of words, better results could be achieved.
+training set. That's why the results are not as good as they could be. By spending a few hours on increasing the
+training set and including more keywords in the bag of words, far better results could be achieved.
 
 To train the neural network
 ```bash
