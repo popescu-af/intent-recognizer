@@ -20,7 +20,8 @@ make
 # Allowed options:
 #   -h, --help               show help message
 #   -s, --sentence arg       user sentence to guess intent for
-#   -t, --type arg (=basic)  type of recognizer to use, can be 'basic'
+#   -t, --type arg (=basic)  type of recognizer to use, can be 'basic' or 'advanced'
+#   -m, --model arg          path to model, needed only by the 'advanced' type
 
 # example calls
 ./src/bin/app -s "What is the weather like today?"
@@ -35,6 +36,10 @@ Intent: Check Calendar
 ./src/bin/app -s "Please elaborate an interesting fact."
 Intent: Get Fact
 ```
+
+### Backlog
+
+See the backlog [here](BACKLOG.md).
 
 ## Logical View
 
@@ -66,8 +71,6 @@ The architecture of the intent-recognizer lib is as follows
 
 As you can see in the picture above, the user of the library can instantiate different types of recognizers, without being coupled to those respective implementations, by means of a common interface.
 
-
-
 #### The `basic` version
 
 The basic version of the intent recognizer is a very simple one. The "guessing" of intent is based
@@ -76,4 +79,40 @@ This version is assuming the input is strictly matching the expected patterns (w
 
 #### The `advanced` version
 
-TODO
+The advanced version uses a simple forward neural network for predicting.
+The quality of the recognitions is dependent on the richness and quality of the training set and
+on the quality of the features chosen, respectively. Also, the architecture of the neural network
+influences the end result.
+
+The current implementation uses the `bag of words` approach, which simply counts the occurrence of some
+predefined keywords in the given sentence to create the feature vector.
+
+Note: although it would be expected that the advanced recognizer would handle natural language better,
+given the present training data and feature vector definitions, the results are over fit to the (small)
+training set. That's why the results are not satisfactory. By spending a few hours on increasing the
+training set and including more keywords in the bag of words, better results could be achieved.
+
+To train the neural network
+```bash
+# These have to be run after cmake was called
+# TODO: move to cmake custom target
+cd script
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+python ./train.py
+python ../build/src/lib/frugally_deep/keras_export/convert_model.py keras_model.h5 model.json
+# script/model.json contains the trained model
+```
+
+To run the advanced recognizer
+```bash
+cd ${CMAKE_SOURCE_DIR}
+
+build/src/bin/app -s "Is there any free spot in my schedule today?" -t advanced -m script/model.json
+# Intent: Check Calendar
+
+build/src/bin/app -s "The weather in Sankt-Petersburg in fifteen days, please." -t advanced -m script/model.json
+# Intent: Get Weather City
+```

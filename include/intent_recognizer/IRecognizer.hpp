@@ -9,6 +9,8 @@ enum class Intent;
 class IRecognizer {
 public:
     virtual const Intent getIntent(const std::string& sentence) const = 0;
+
+    virtual ~IRecognizer() {};
 };
 
 // Intent is the enum for supported intents.

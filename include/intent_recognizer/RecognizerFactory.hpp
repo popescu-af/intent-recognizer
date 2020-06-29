@@ -12,4 +12,7 @@ class RecognizerFactory {
 public:
     // createBasic creates a basic recognizer.
     static RecognizerPtr createBasic();
+
+    // createAdvanced creates an advanced recognizer.
+    static RecognizerPtr createAdvanced(const std::string& pathToModel);
 };
