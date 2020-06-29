@@ -31,6 +31,8 @@
 *.out
 *.app
 
+**/venv/
+
 build/
 script/features.csv
 script/keras_model.h5

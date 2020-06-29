@@ -108,6 +108,11 @@ python ../build/src/lib/frugally_deep/keras_export/convert_model.py keras_model.
 
 To run the advanced recognizer
 ```bash
+cd ${CMAKE_SOURCE_DIR}
+
 build/src/bin/app -s "Is there any free spot in my schedule today?" -t advanced -m script/model.json
 # Intent: Check Calendar
+
+build/src/bin/app -s "The weather in Sankt-Petersburg in fifteen days, please." -t advanced -m script/model.json
+# Intent: Get Weather City
 ```
