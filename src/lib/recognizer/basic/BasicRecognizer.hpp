@@ -5,7 +5,7 @@
 #include <regex>
 #include <vector>
 
-// BasicRecognizeris a recognizer which works by simply matching the
+// BasicRecognizer is a recognizer which works by simply matching the
 // input sentence to a series of regular expressions. The first one that matches
 // is considered a fit and the corresponding intent is returned.
 class BasicRecognizer : public IRecognizer {

@@ -20,7 +20,8 @@ make
 # Allowed options:
 #   -h, --help               show help message
 #   -s, --sentence arg       user sentence to guess intent for
-#   -t, --type arg (=basic)  type of recognizer to use, can be 'basic'
+#   -t, --type arg (=basic)  type of recognizer to use, can be 'basic' or 'advanced'
+#   -m, --model arg          path to model, needed only by the 'advanced' type
 
 # example calls
 ./src/bin/app -s "What is the weather like today?"
@@ -76,4 +77,26 @@ This version is assuming the input is strictly matching the expected patterns (w
 
 #### The `advanced` version
 
-TODO
+The advanced version uses a simple forward neural network for predicting.
+The quality of the recognitions is dependant on the richness and quality of the training set and
+on the quality of the features chosen, respectively. Also, the architecture of the neural network
+influences the end result.
+
+To train the neural network
+```bash
+# These have to be run after cmake was called
+# TODO: move to cmake custom target
+cd script
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+python ./train.py
+python ../build/src/lib/frugally_deep/keras_export/convert_model.py keras_model.h5 model.json
+# script/model.json contains the trained model
+```
+
+To run the advanced recognizer
+```bash
+build/src/bin/app -s "What's my schedule at 16:00 PM?" -t advanced -m script/model.json
+```

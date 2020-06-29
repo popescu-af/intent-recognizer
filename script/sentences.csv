@@ -1,0 +1,6 @@
+sentence,intent
+"what is the weather like today?",0
+"what is the weather like in Paris today?",1
+"what is the weather like in New York today?",1
+"am I free at 13:00 PM tomorrow?",2
+"tell me an interesting fact.",3

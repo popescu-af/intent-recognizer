@@ -32,3 +32,6 @@
 *.app
 
 build/
+script/features.csv
+script/keras_model.h5
+script/model.json
