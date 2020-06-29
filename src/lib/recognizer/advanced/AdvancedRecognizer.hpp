@@ -12,6 +12,8 @@ public:
 
     const Intent getIntent(const std::string& sentence) const override;
 
+    ~AdvancedRecognizer() override = default;
+
 private:
     fdeep::model m_model;
 };

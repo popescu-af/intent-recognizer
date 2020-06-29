@@ -14,6 +14,8 @@ public:
 
     const Intent getIntent(const std::string& sentence) const override;
 
+    ~BasicRecognizer() override = default;
+
 private:
     std::vector<std::pair<std::regex, Intent>> m_intentMap; // regular expressions to check
 };
