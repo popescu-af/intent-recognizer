@@ -37,6 +37,10 @@ Intent: Check Calendar
 Intent: Get Fact
 ```
 
+### Backlog
+
+See the backlog [here](BACKLOG.md).
+
 ## Logical View
 
 The intent recognizer is built around a static library with the same name.
@@ -67,8 +71,6 @@ The architecture of the intent-recognizer lib is as follows
 
 As you can see in the picture above, the user of the library can instantiate different types of recognizers, without being coupled to those respective implementations, by means of a common interface.
 
-
-
 #### The `basic` version
 
 The basic version of the intent recognizer is a very simple one. The "guessing" of intent is based
@@ -78,9 +80,17 @@ This version is assuming the input is strictly matching the expected patterns (w
 #### The `advanced` version
 
 The advanced version uses a simple forward neural network for predicting.
-The quality of the recognitions is dependant on the richness and quality of the training set and
+The quality of the recognitions is dependent on the richness and quality of the training set and
 on the quality of the features chosen, respectively. Also, the architecture of the neural network
 influences the end result.
+
+The current implementation uses the `bag of words` approach, which simply counts the occurrence of some
+predefined keywords in the given sentence to create the feature vector.
+
+Note: although it would be expected that the advanced recognizer would handle natural language better,
+given the present training data and feature vector definitions, the results are over fit to the (small)
+training set. That's why the results are not satisfactory. By spending a few hours on increasing the
+training set and including more keywords in the bag of words, better results could be achieved.
 
 To train the neural network
 ```bash
@@ -98,5 +108,6 @@ python ../build/src/lib/frugally_deep/keras_export/convert_model.py keras_model.
 
 To run the advanced recognizer
 ```bash
-build/src/bin/app -s "What's my schedule at 16:00 PM?" -t advanced -m script/model.json
+build/src/bin/app -s "Is there any free spot in my schedule today?" -t advanced -m script/model.json
+# Intent: Check Calendar
 ```
